@@ -13,7 +13,7 @@ Vue.createApp({
                 { title: '聯絡表單', link: '#ContactBox', id: 'Contact', Mobileid: 'MobileContact' }
             ],
             portfolio: [
-                { title: '名片設計' , Introduction: '說明文字', link: 'images/photos/photoa01.jpg' },
+                { title: '名片設計' , Introduction: '說明文字', link: '../images/photos/photoa01.jpg' },
                 { title: '網頁版型設計' , Introduction: '說明文字', link: '../images/photos/photoa02.jpg' },
                 { title: '網頁版型設計' , Introduction: '說明文字', link: '../images/photos/photoa03.jpg' },
                 { title: '網頁版型設計' , Introduction: '說明文字', link: '../images/photos/photoa04.jpg' },
