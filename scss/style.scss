@@ -1,0 +1,37 @@
+ /* 樣式 */
+    /* 對應 HTML5相同標籤或者呼叫 id（標籤自訂名稱-英文、數字和底線「_ 」；唯一）；class（重覆，共用樣式） */
+
+    @import '_01Joint.scss';
+
+
+    // css 呼叫 id：輸入 #name
+    // css 呼叫 class：輸入 .name
+    
+    // 加入判斷裝置的斷點
+    // 超小裝置 <576px max-width（最大寬度）
+    @media screen and (max-width: 576px) {
+        @import '_02Esmall.scss';
+    }
+    // 小裝置 >= 576px min-width（最小寬度 含等於）
+    @media screen and (min-width: 576px) {
+       @import '_03Small.scss';
+    }
+
+    // 平版裝置 >=768px Medium
+    @media screen and (min-width: 768px) {
+       @import '_04Medium.scss';
+    }
+
+    // 大平版裝置 >=992px Large
+    @media screen and (min-width: 992px) {
+        @import '_05Large.scss';
+    }
+    // 螢幕裝置 >=1200px Xlarge
+    @media screen and (min-width: 1200px) {
+        @import '_06Xlarge.scss';
+    }
+
+    // 超大螢幕裝置 >=1400px XXlarge
+    @media screen and (min-width: 1400px) {
+        @import '_07XXlarge.scss';  
+    }

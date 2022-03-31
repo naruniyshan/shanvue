@@ -1,0 +1,42 @@
+header {
+    nav {
+        // 商標
+        #Logo {
+            // 文字垂直置中
+            text-align: center;
+            // 不內縮
+            text-indent: 0;
+        }
+
+        // 導覽列：只顯示 Logo 和 Menu，其餘不顯示
+        // css3集合寫法，將共同的樣式一同編輯
+        #Portfolio,
+        #About,
+        #Project,
+        #Contact {
+            // 呼叫 @mixin
+            @include DN;
+        }
+    }
+
+    // 輪播圖片 超小與小裝置 100% X 280px（圖片以大尺寸 1920 x 600 為基礎計算）
+    // vw（以裝置的寬為寬度） vh（以裝置高為高度）
+    #BannerBox {
+        // 讀取 03Small 的資料
+        > .Arrow {
+            line-height: 140px;
+            margin: {
+                top: -70px;
+            }
+
+            > .arrow {
+                height: 140px;
+            }
+        }
+    }
+}
+
+footer {
+    nav {
+    }
+}

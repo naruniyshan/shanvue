@@ -1,0 +1,701 @@
+// 有需要這尺寸的裝置，再寫樣式語法
+
+#Top {
+  @include DN;
+}
+
+header {
+  nav {
+    // 屬於 nav 寬度 % ；高度 px；背景色（暫）
+    width: $NW;
+
+    // 停佇在畫面上方，不隨著畫面划動而消失
+    position: fixed;
+    top: 0;
+    z-index: 999;
+
+    background-color: white;
+
+    // 指向清單物件 li
+    li {
+      // 將 Logo 與 選單 設定為 垂直排列（一列） float
+      // float（浮點對齊） 缺點，會自動往上一階層（新圖層），所以，父框架（外框架），若沒有設定高度，系統將會無視存在
+      // 解決方式一：父框架（外框架）設定高度；解決方式二：清除 clear 浮動狀態
+      float: left;
+    }
+    // 商標
+    #Logo {
+      // 寬度 9 等份
+      width: $W1 * 9;
+      // 文字尺寸，內縮，水平置中
+      font-size: $Tpx * 2;
+      // 內縮：方法1，首行縮排（單行文字）
+      text-indent: 30px;
+      // 文字水平置中，行距設定（父框架的高度 = 行距的數值） line-height: 80 * 0.15 + px;
+      line-height: $NH;
+      text-indent: -9999px;
+      > a {
+        width: $WPer * 6;
+        line-height: $NH + 10;
+        display: block;
+        padding: {
+          bottom: 10px;
+        }
+        @include BG(icon, "logo.png", contain);
+      }
+    }
+    // 選單
+    #Menu {
+      // 寬度 1 等份
+      width: $W1;
+      // height: 100%;
+      // 文字水平（行距）、垂直（文字對齊 -- 置中）置中
+      text-align: center;
+      line-height: $NH + 10;
+      // 自行輸入所需的值
+      @include BgText(contain);
+      // 背景圖片連結
+      background-image: url(../../images/icon/000001.svg);
+    }
+
+    // 導覽列：只顯示 Logo 和 Menu，其餘不顯示
+    // css3集合寫法，將共同的樣式一同編輯
+    #Portfolio,
+    #About,
+    #Project,
+    #Contact {
+      // 呼叫 @mixin
+      @include DN;
+    }
+  }
+
+  // 手機版的導覽列
+  #MobileNav {
+    width: $WPer * 10;
+    // 高度單位 vh （裝置的可視高度）
+    height: 100vh;
+    // 定位點 絕對定位 設定階層
+    position: absolute;
+    z-index: 9999;
+    display: none;
+    position: fixed;
+    top: 0;
+    background-color: rgb(180, 86, 110);
+
+    > li {
+      width: $WPer * 7.5;
+      margin: {
+        top: 35px;
+      }
+
+      > a {
+        color: white;
+        font-size: $Trem * 1.5;
+      }
+    }
+
+    > .Close {
+      width: $WPer * 1;
+      font-size: $Trem * 1.3;
+      color: sandybrown;
+      font-weight: 600;
+      margin-right: $WPer * 0.5;
+      text-align: right;
+      background-color: seagreen;
+    }
+  }
+
+  // 輪播圖片 超小與小裝置 100% X 280px（圖片以大尺寸 1920 x 600 為基礎計算）
+  // vw（以裝置的寬為寬度） vh（以裝置高為高度）
+  #BannerBox {
+    width: $W10;
+    // 超出範圍設定，能滑動X軸，讓圖片在框架中左右滑動
+    overflow: hidden;
+    background-color: rgb(7, 53, 37);
+
+    // 導覽固定在上方，會形成浮動狀態，故廣告區的上方要用 外間距設定為高度
+    margin: {
+      top: $NH;
+    }
+
+    // 相對定位（移動物件的定位點）-- 重新定位
+    position: relative;
+
+    // 輪播圖左右按鈕
+    > .Arrow {
+      width: $WPer * 10;
+      // 相對定位
+      position: absolute;
+      // 層級
+      z-index: 5;
+      // 文字尺寸
+      font-size: $Trem * 1.8;
+      // 水平置中
+      text-align: center;
+      // 垂直置中
+      line-height: 120px;
+      // 設定為 50% 位置
+      top: 50%;
+      // 外間距
+      margin: {
+        top: -60px;
+      }
+      display: flex;
+
+      > .arrow {
+        width: $WPer * 0.5;
+        height: 120px;
+        // 圓角矩形
+        border-radius: 20px;
+        background-color: rgba(255, 255, 255, 0.3);
+        // 定位點 停佇
+        // position: fixed;
+      }
+
+      > .Larrow {
+        // 靠左
+        left: 10px;
+        margin-left: 12px;
+      }
+
+      > .Rarrow {
+        // 靠右
+        right: 10px;
+        margin-right: 12px;
+      }
+    }
+
+    // 輪播區 按扭
+    > .RadioBox {
+      width: $WPer * 10;
+
+      > input {
+        @include DN;
+      }
+
+      // 控制按鈕
+      > .Controls_Visible {
+        width: $WPer * 10;
+        position: absolute;
+        text-align: center;
+        bottom: 12px;
+
+        > label {
+          // 顯示方式 行內區塊
+          display: inline-block;
+          // 寬度與高度 同數值為正
+          width: 12px;
+          height: 12px;
+          // 物件的左右間距
+          margin: 0 8px;
+          // 背景顏色
+          background-color: white;
+          // 圓角 正圓
+          border-radius: 50%;
+          // 框線
+          border: 2px solid white;
+        }
+      }
+
+      // 轉換控制按鈕顏色 「~」連結同層元素，形成連動
+      > input[type="radio"]:nth-of-type(1):checked
+        ~ .Controls_Visible
+        label:nth-of-type(1) {
+        background-color: rgb(18, 20, 126);
+      }
+
+      > input[type="radio"]:nth-of-type(2):checked
+        ~ .Controls_Visible
+        label:nth-of-type(2) {
+        background-color: rgb(18, 20, 126);
+      }
+
+      > input[type="radio"]:nth-of-type(3):checked
+        ~ .Controls_Visible
+        label:nth-of-type(3) {
+        background-color: rgb(18, 20, 126);
+      }
+
+      > input[type="radio"]:nth-of-type(4):checked
+        ~ .Controls_Visible
+        label:nth-of-type(4) {
+        background-color: rgb(18, 20, 126);
+      }
+
+      > input[type="radio"]:nth-of-type(5):checked
+        ~ .Controls_Visible
+        label:nth-of-type(5) {
+        background-color: rgb(18, 20, 126);
+      }
+
+      // > input[type="radio"]:nth-of-type(1):checked
+      //     ~ .ImgBox
+      //     > a
+      //     > .SmallImg {
+      //     transform: translateX(0vw);
+      // }
+
+      // > input[type="radio"]:nth-of-type(2):checked
+      //     ~ .ImgBox
+      //     > a
+      //     > .SmallImg {
+      //     transform: translateX(-100vw);
+      // }
+
+      // > input[type="radio"]:nth-of-type(3):checked
+      //     ~ .ImgBox
+      //     > a
+      //     > .SmallImg {
+      //     transform: translateX(-200vw);
+      // }
+
+      // > input[type="radio"]:nth-of-type(4):checked
+      //     ~ .ImgBox
+      //     > a
+      //     > .SmallImg {
+      //     transform: translateX(-300vw);
+      // }
+
+      // > input[type="radio"]:nth-of-type(5):checked
+      //     ~ .ImgBox
+      //     > a
+      //     > .SmallImg {
+      //     transform: translateX(-400vw);
+      // }
+
+      > .ImgBox {
+        // 圖片框的寬度尺寸
+        width: $W10 * 5;
+        // 呼叫動畫 動畫名稱 總秒數 播放次數（無限播放） 反向播放
+        // animation: move 25s infinite alternate;
+        .SmallImg {
+          width: 100vw;
+          float: left;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  .HRLine {
+    // 上邊界與下邊界，讓 main 與 footer 有點區隔
+    margin: {
+      // top: 15px;
+      bottom: 15px;
+    }
+  }
+  nav {
+    width: $W1 * 7;
+    // 彈性佈局 設定方式：設定在要排列物件的父框架
+    display: flex;
+
+    // 彈性佈局 order 重新設定排列順序
+    #Graphic {
+      order: 3;
+    }
+    .LeftLine {
+      order: 2;
+    }
+    #Web {
+      order: 1;
+    }
+    .RightLine {
+      order: 4;
+    }
+    #Audio {
+      order: 5;
+    }
+  }
+
+  address {
+    width: $W1 * 5;
+    // 彈性佈局
+    display: flex;
+    // 上邊界 nav 與 address 的距離
+    margin: {
+      top: 10px;
+      bottom: 20px;
+    }
+
+    .Line {
+      width: $W1 * 2;
+      height: 30px;
+      @include BG(icon, "000002.svg", contain);
+    }
+  }
+
+  h6 {
+    // 文字置中
+    text-align: center;
+    // 文字尺寸
+    font-size: $Trem * 0.8;
+    // 文字粗細
+    font-weight: 200;
+    background-color: coral;
+  }
+}
+
+#main {
+  > #PortfolioBox {
+    margin: {
+      bottom: 20px;
+    }
+    > h1 {
+      text-align: center;
+      font-size: $Trem * 2;
+      padding: {
+        top: 10px;
+        bottom: 10px;
+      }
+    }
+    #MoPortfolio {
+      width: $WPer * 8.5;
+      display: flex;
+      align-items: center;
+      > .arrow {
+        width: $WPer * 0.7;
+      }
+      > ul {
+        width: $WPer * 6.5;
+        border: solid 1px #512315;
+        box-shadow: 3px 3px 5px #42424267;
+      }
+    }
+    #PorCon {
+      @include DN;
+    }
+  }
+
+  > #AboutBox {
+    background-image: url(../../images/bg/w-07win-7.gif);
+    > h1 {
+      text-align: center;
+      font-size: $Trem * 2;
+      padding: {
+        top: 10px;
+        bottom: 10px;
+      }
+      color: rgb(54, 7, 7);
+    }
+    > .AboCon {
+      width: 80%;
+      padding-bottom: 15px;
+      // 文字尺寸與對齊方式
+      text-align: justify;
+      font-size: $Trem * 1.3;
+      // 行距 同單位加減
+      line-height: $Tpx * 1.3 + 5px;
+
+      > div {
+        // about 內容
+        > p {
+          margin: {
+            top: 10px;
+            bottom: 10px;
+          }
+        }
+        > ul {
+          // 彈性佈局
+          display: flex;
+          // 換行
+          flex-wrap: wrap;
+          > li {
+            width: 47%;
+          }
+          > .full {
+            width: 97%;
+          }
+        }
+        > .TextCon {
+          margin: {
+            top: 10px;
+            bottom: 10px;
+          }
+
+          div {
+            margin: {
+              top: 10px;
+              bottom: 10px;
+            }
+          }
+
+          h5 {
+            font-size: $Trem * 1.4;
+            text-align: center;
+            color: rgb(153, 41, 0);
+          }
+        }
+      }
+    }
+  }
+
+  > #ProjectBox {
+    > h1 {
+      text-align: center;
+      font-size: $Trem * 2;
+      padding: {
+        top: 10px;
+        bottom: 10px;
+      }
+    }
+    > #content {
+      > .NewNotepad {
+        width: $WPer * 6.5;
+        border: solid 1px brown;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        margin-bottom: 30px;
+        h3 {
+          width: 100%;
+          height: 60px;
+          text-align: center;
+          line-height: 60px;
+          color: white;
+          background-color: brown;
+        }
+        .Content {
+          width: 90%;
+          padding-bottom: 10px;
+          > .Summary,
+          .Text {
+            width: 100%;
+            height: 25px;
+            display: flex;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            > li,
+            Text {
+              li {
+                width: 20%;
+                list-style-type: none;
+                line-height: 40px;
+                text-align: center;
+                background-color: rgb(221, 140, 103);
+              }
+            }
+
+            > input[type="text"],
+            .Text {
+              > input[type="text"] {
+                width: 80%;
+                height: 25px;
+                border: 0px;
+                padding: 5px;
+                box-sizing: border-box;
+                font-size: calc(16px * 0.9);
+              }
+            }
+          }
+        }
+        .Button {
+          width: 90px;
+          height: 35px;
+          list-style-type: none;
+          text-align: center;
+          margin-bottom: 20px;
+          background-color: rgb(76, 134, 241);
+          > a {
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            line-height: 35px;
+            font-weight: 500;
+          }
+        }
+      }
+
+      > #Item {
+        width: 80%;
+        margin-bottom: 30px;
+        h3 {
+          width: 100%;
+          height: 90px;
+          text-align: center;
+          line-height: 90px;
+          font-size: 35px;
+        }
+        table {
+          width: 100%;
+          border: solid 1px darkred;
+          margin: 0;
+          padding: 0;
+          tbody > tr {
+            width: 100%;
+            height: 50px;
+            padding: 5px;
+            box-sizing: border-box;
+            background-color: wheat;
+          }
+          .Del {
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+    }
+  }
+
+  #ContactBox {
+    background-image: url(../../images/bg/w-07win-7.gif);
+
+    // 標題
+    #ContactTitle {
+      width: $WPer * 9;
+      text-align: center;
+      font-size: $Trem * 2;
+      // 外間距 margin；上間距無法將物件與父框架，顯示設定的距離，故改用 內間距 padding 設定
+      padding: {
+        top: 15px;
+        bottom: 15px;
+      }
+      color: rgb(54, 7, 7);
+      border-bottom: 1px solid rgb(54, 7, 7);
+      margin: {
+        bottom: 30px;
+      }
+    }
+
+    form {
+      // 寬度 左右留白
+      width: $WPer * 6.5;
+      // background-color: coral;
+      // 繼承 單獨為表單使用
+      %PI_S {
+        padding: {
+          top: 10px;
+          // 表單與頁尾之間的距離
+          bottom: 15px;
+        }
+        margin: {
+          bottom: 5px;
+        }
+      }
+
+      %TitlM_S {
+        margin: {
+          bottom: 10px;
+        }
+      }
+
+      %InputInBox_S {
+        width: $WPer * 10;
+        height: 30px;
+        font-size: $Trem * 1.1;
+        // 內間距
+        padding: {
+          left: 10px;
+        }
+
+        // 使用者輸入時，呈現的樣式
+        color: brown;
+        // 文字粗細
+        font-weight: 500;
+      }
+
+      %BtnSR_S {
+        width: 100px;
+        height: 35px;
+        font-size: $Trem * 1.2;
+        color: white;
+        // 按鈕平面化，邊框線段為 0
+        border: 0;
+        // 圓角
+        border-radius: 15px;
+      }
+
+      // 子元素選擇器 >
+      > div {
+        @extend %PI_S;
+        font-size: $Trem * 1.3;
+      }
+
+      > #NameBox {
+        // 彈性佈局
+        display: flex;
+        flex-wrap: wrap;
+        > label {
+          width: $WPer * 10;
+          @extend %TitlM_S;
+        }
+        > input[type="text"] {
+          @extend %InputInBox_S;
+        }
+        // 偽元素，使用者觀看到的樣式；表單統一設計樣式
+        > input[type="text"]::placeholder {
+          // color: brown;
+          // font-weight: 600;
+        }
+      }
+
+      > .Mail {
+        display: flex;
+        flex-wrap: wrap;
+        > label {
+          width: $WPer * 10;
+          @extend %TitlM_S;
+        }
+        > input {
+          @extend %InputInBox_S;
+        }
+      }
+
+      > .Ques {
+        // 彈性佈局
+        display: flex;
+        // 換行
+        flex-wrap: wrap;
+
+        > p {
+          // 寬度
+          width: $WPer * 10;
+          // 外間距
+          @extend %TitlM_S;
+        }
+        > li {
+          // 寬度
+          width: $WPer * 5;
+          margin: {
+            bottom: 15px;
+          }
+          text-align: center;
+        }
+      }
+
+      > .TextArea {
+        > li {
+          width: $WPer * 10;
+          @extend %TitlM_S;
+        }
+        > textarea {
+          width: $WPer * 10;
+          font-size: $Trem * 1.2;
+        }
+      }
+
+      > .FormBtn {
+        width: $WPer * 10;
+        display: flex;
+        margin: {
+          bottom: 0;
+        }
+
+        > input[type="submit"] {
+          @extend %BtnSR_S;
+          order: 2;
+          background-color: rgb(177, 6, 40);
+        }
+
+        > input[type="reset"] {
+          @extend %BtnSR_S;
+          order: 1;
+          background-color: rgb(1, 89, 190);
+        }
+      }
+
+      .E_mail2 {
+        @include DN;
+      }
+    }
+  }
+}

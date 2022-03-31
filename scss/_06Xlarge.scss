@@ -1,0 +1,80 @@
+header {
+  nav {
+    // 屬於 nav 寬度 % ；高度 px；背景色（暫）
+    width: $NW;
+
+    // 顯示方式：彈性佈局 要排列物的父框架
+    display: flex;
+
+    // 呼叫 導覽列內按鈕的寬度設定
+    @include LargeNav(5, 4);
+
+    // 商標
+    #Logo {
+      // 水平置中
+      text-align: center;
+      // 文字尺寸 rem
+      font-size: $Trem * 2.5;
+
+      // 清除小裝置設定 首行縮排
+      text-indent: 0;
+    }
+
+    // 按鈕共用值 li
+    li {
+      // 文字對齊 水平 垂直 置中
+      text-align: center;
+      // 文字尺寸
+      font-size: $Trem * 1.8;
+      // 行距
+      line-height: $Trem * (2 + 2.5);
+    }
+
+    #Portfolio,
+    #About,
+    #Project,
+    #Contact {
+      // 小裝置為關閉，需再次開啟才可以看到資料
+      @include ON;
+    }
+
+    // 選單
+    #Menu {
+      @include DN;
+    }
+  }
+  // 輪播圖片 超小與小裝置 100% X 280px（圖片以大尺寸 1920 x 600 為基礎計算）
+  // vw（以裝置的寬為寬度） vh（以裝置高為高度）
+  #BannerBox {
+    width: $W10;
+    // 因為，框架高度會由圖片帶出，所以不用設定高度
+    // 超出範圍設定，能滑動X軸，讓圖片在框架中左右滑動
+    overflow: hidden;
+    font-size: 0;
+
+    > .Arrow {
+      line-height: 120px;
+      margin: {
+        top: -60px;
+      }
+
+      > .arrow {
+        width: $WPer * 0.2;
+        height: 120px;
+      }
+    }
+  }
+}
+
+footer {
+  nav {
+  }
+}
+
+#main {
+  > #ContactBox {
+    > form {
+      width: $WPer * 4.5;
+    }
+  }
+}

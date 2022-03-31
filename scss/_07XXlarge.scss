@@ -1,0 +1,53 @@
+header {
+  nav {
+    // 屬於 nav 寬度 % ；高度 px；背景色（暫）
+    width: $WPer * 10;
+
+    // 顯示方式：彈性佈局 要排列物的父框架
+    display: flex;
+
+    // 呼叫 導覽列內按鈕的寬度設定
+    @include LargeNav(5, 4);
+
+    // 商標
+    #Logo {
+      // 水平置中
+      text-align: center;
+      // 文字尺寸 rem
+      font-size: $Trem * 2.5;
+
+      // 清除小裝置設定 首行縮排
+      text-indent: 0;
+    }
+
+    // 按鈕共用值 li
+    li {
+      // 文字對齊 水平 垂直 置中
+      text-align: center;
+      // 文字尺寸
+      font-size: $Trem * 1.8;
+      // 行距
+      line-height: $Trem * (1.8 + 3.5);
+    }
+
+    #Portfolio,
+    #About,
+    #Project,
+    #Contact {
+      // 小裝置為關閉，需再次開啟才可以看到資料
+      @include ON;
+    }
+
+    // 選單
+    #Menu {
+      @include DN;
+    }
+  }
+
+  // Banner 讀取 Xlarges的資料
+}
+
+footer {
+  nav {
+  }
+}

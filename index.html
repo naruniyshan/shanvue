@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人設計工作室</title>
+    
+    <link rel="stylesheet" href="dist/style/style.min.css">
+<body>
+        
+    <article id="Content" v-cloak>
+        <li id="Top"><a href="#Logo" v-on:click="topbtn()">TOP</a></li>
+        
+        <header>
+        
+            <nav>
+                <!-- 清單 li -->
+                <li
+                    :id="navitem.id"
+                    v-for="navitem in nav"
+                >
+                    <a :href="navitem.link">{{ navitem.title }}</a>
+                </li>
+        
+                <li
+                    id="Menu"
+                    v-on:click="opennav"
+                >工作室選單按鈕</li>
+            </nav>
+        
+            <!-- 手機版的導覽列 -->
+            <ul id="MobileNav">
+                <li
+                    class="Close"
+                    v-on:click="closenav"
+                >Close</li>
+                <li
+                    class="MobileItems"
+                    :id="items.Mobileid"
+                    v-for="items in nav"
+                >
+                    <a :href="items.link">{{ items.title }}</a>
+                </li>
+            </ul>
+        
+            <!-- 基本輪播圖片 1組為 5 張圖 -->
+            <div id="BannerBox">
+                <!-- 左右按鈕 -->
+        
+        
+                <!-- 按鈕 表單物件 單選鈕 checked預選 -->
+                <div class="RadioBox">
+                    <input
+                        type="radio"
+                        name="Control"
+                        id="Control_1"
+                        checked
+                    >
+                    <input
+                        type="radio"
+                        name="Control"
+                        id="Control_2"
+                    >
+                    <input
+                        type="radio"
+                        name="Control"
+                        id="Control_3"
+                    >
+                    <input
+                        type="radio"
+                        name="Control"
+                        id="Control_4"
+                    >
+                    <input
+                        type="radio"
+                        name="Control"
+                        id="Control_5"
+                    >
+        
+                    <!-- 項目清單 ul li  輪播圖片 超小與小裝置（左右輪播）-->
+                    <div
+                        class="ImgBox"
+                        id="Images"
+                    >
+                        <!-- html5 新標籤 picture 必要配置標籤 source 和 img（如果所有判斷圖片都讀取不到，就會讀取 img 上的圖片）  響應式圖片區塊 ；media的判斷，用 max-width 最大的寬度設定-->
+                        <!-- 將 picture 標籤當為一張圖片，裡面可以寫入不同尺寸的相同圖片；例：輪播圖有 5 張，需設定 5個 picture 標籤，每組標籤內可放入不同尺寸但內容卻相同的圖片 -->
+                        <a href="javascript:;">
+                            <picture class="ImgBox01 SmallImg">
+                                <source
+                                    srcset="images/banner/s/banner01s.jpg"
+                                    media="(max-width: 767px)"
+                                >
+                                <source
+                                    srcset="images/banner/m/banner01m.jpg"
+                                    media="(max-width: 1023px)"
+                                >
+                                <source
+                                    srcset="images/banner/banner01.jpg"
+                                    media="(min-width: 1024px)"
+                                >
+                                <img
+                                    src="images/icon/camera.svg"
+                                    alt=""
+                                >
+                            </picture>
+                        </a>
+        
+                        <a href="javascript:;">
+                            <picture class="ImgBox02 SmallImg">
+                                <source
+                                    srcset="images/banner/s/banner02s.jpg"
+                                    media="(max-width: 767px)"
+                                >
+                                <source
+                                    srcset="images/banner/m/banner02m.jpg"
+                                    media="(max-width: 1023px)"
+                                >
+                                <source
+                                    srcset="images/banner/banner02.jpg"
+                                    media="(min-width: 1024px)"
+                                >
+                                <img
+                                    src="images/icon/camera.svg"
+                                    alt=""
+                                >
+                            </picture>
+                        </a>
+        
+                        <a href="javascript:;">
+                            <picture class="ImgBox03 SmallImg">
+                                <source
+                                    srcset="images/banner/s/banner03s.jpg"
+                                    media="(max-width: 767px)"
+                                >
+                                <source
+                                    srcset="images/banner/m/banner03m.jpg"
+                                    media="(max-width: 1023px)"
+                                >
+                                <source
+                                    srcset="images/banner/banner03.jpg"
+                                    media="(min-width: 1024px)"
+                                >
+                                <img
+                                    src="images/icon/camera.svg"
+                                    alt=""
+                                >
+                            </picture>
+                        </a>
+        
+                        <a href="javascript:;">
+                            <picture class="ImgBox04 SmallImg">
+                                <source
+                                    srcset="images/banner/s/banner04s.jpg"
+                                    media="(max-width: 767px)"
+                                >
+                                <source
+                                    srcset="images/banner/m/banner04m.jpg"
+                                    media="(max-width: 1023px)"
+                                >
+                                <source
+                                    srcset="images/banner/banner04.jpg"
+                                    media="(min-width: 1024px)"
+                                >
+                                <img
+                                    src="images/icon/camera.svg"
+                                    alt=""
+                                >
+                            </picture>
+                        </a>
+        
+                        <a href="javascript:;">
+                            <picture class="ImgBox05 SmallImg">
+                                <source
+                                    srcset="images/banner/s/banner05s.jpg"
+                                    media="(max-width: 767px)"
+                                >
+                                <source
+                                    srcset="images/banner/m/banner05m.jpg"
+                                    media="(max-width: 1023px)"
+                                >
+                                <source
+                                    srcset="images/banner/banner05.jpg"
+                                    media="(min-width: 1024px)"
+                                >
+                                <img
+                                    src="images/icon/camera.svg"
+                                    alt=""
+                                >
+                            </picture>
+                        </a>
+                    </div>
+        
+                    <div
+                        class="Controls_Visible"
+                        id="AllButtons"
+                    >
+                        <label
+                            for="Control_1"
+                            id="P01"
+                        ></label>
+                        <label
+                            for="Control_2"
+                            id="P02"
+                        ></label>
+                        <label
+                            for="Control_3"
+                            id="P03"
+                        ></label>
+                        <label
+                            for="Control_4"
+                            id="P04"
+                        ></label>
+                        <label
+                            for="Control_5"
+                            id="P05"
+                        ></label>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <article id="main">
+        
+            <article id="PortfolioBox">
+                <h1 id="PortfolioTitle">作品分享</h1>
+                <section id="MoPortfolio">
+                    <div class="arrow">
+                        <a href="javascript:;" v-on:click="changeportfolio(-1)">
+                            <img src="/images/icon/left.svg" alt="">
+                        </a>
+                    </div>
+
+                    <ul>
+                        <li class="img">
+                            <img
+                                :src="portfolio[index].link"
+                                alt=""
+                            >
+                        </li>
+                        <h2>{{ portfolio[index].title }}</h2>
+                        <li class="Introduction">{{ portfolio[index].Introduction }}</li>
+                    </ul>
+
+                    <div class="arrow">
+                        <a href=" javascript:;" v-on:click="changeportfolio(1)">
+                            <img
+                                src="/images/icon/right.svg"
+                                alt=""
+                            >
+                        </a>
+                    </div>
+                </section>
+                <section id="PorCon">
+                    <ul v-for="portfolio in portfolio">
+                        <li class="img">
+                            <img
+                                :src="portfolio.link"
+                                alt=""
+                            >
+                        </li>
+                        <h2>{{ portfolio.title }}</h2>
+                        <li class="Introduction">{{ portfolio.Introduction }}</li>
+                    </ul>
+                </section>
+            </article>
+        
+            <article id="AboutBox">
+                <h1 id="AboutTitle">關於工作室</h1>
+            </article>
+        
+            <article id="ProjectBox">
+                <h1 id="ProjectTitle">Vue 小作品 -- 簡易記事本</h1>
+                
+                <div id="content">
+                    <div class="NewNotepad">
+                        <h3>新增記事</h3>
+                        <div class="Content">
+                            <div class="Summary">
+                                <li>摘要</li>
+                                <input
+                                    type="text"
+                                    name=""
+                                    id="Summary"
+                                    v-model="newNote.name"
+                                    placeholder="請填入記事摘要"
+                                >
+                            </div>
+                            <div class="Text">
+                                <li>內容</li>
+                                <input
+                                    type="text"
+                                    name=""
+                                    id="Text"
+                                    v-model="newNote.content"
+                                    placeholder="請填入記事內容"
+                                >
+                            </div>
+                        </div>
+                        <li class="Button">
+                            <a
+                                href="javascript:;"
+                                @click='addNote'
+                            >新增</a>
+                        </li>
+                    </div>
+                
+                    <div id="Item">
+                        <h3>清單</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>名稱</th>
+                                    <th>內容</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="note of notes">
+                                    <th>{{ note.name }}</th>
+                                    <th>{{ note.content }}</th>
+                                    <th>
+                                        <button
+                                            type="button"
+                                            class="Del"
+                                            v-on:click="deleteNote(note)"
+                                        >ｘ</button>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                
+                </div>
+            </article>
+        
+            <article id="ContactBox">
+                <h1 id="ContactTitle">聯絡表單</h1>
+                <!-- 表單 form ，實際用途是傳輸資料用，將資料寫入資料庫或由資料庫讀出修改 -->
+                <!-- get傳輸不重要的資料，資料會顯示在網址上；post傳輸重要的資料，直接加密方式傳送 -->
+                <form
+                    action="mailto:mandyyunmm@gmail.com?subject=詢問宥姍"
+                    method="post"
+                    target="_blank"
+                >
+                    <!-- 姓名 電子信箱 問題 詳細內容 送出 重新輸入  -->
+                    <!-- label 可以直接呼叫 input； for 與 id 相同設定 -->
+                    <!-- name 欄位名稱，對應資料庫的欄位名稱；命名，不能用中文、開頭不能為數字 -->
+                    <!-- 指定初始值 value ；使用者需刪除內容，才可以填入資料 -->
+                    <!-- readonly 唯讀不可以更改內容；由資料庫導入資料時設定，可利用 javascript 判斷開啟功能 -->
+                    <!-- 必填 required ；指定最多能輸入多少字 maxlength ；指定最少需要輸入多少字 minlength-->
+                    <div id="NameBox">
+                        <label for="UserName">姓名</label>
+                        <input
+                            type="text"
+                            name="姓名"
+                            id="UserName"
+                            placeholder="請輸入中文姓名"
+                            required
+                            minlength="3"
+                            maxlength="5"
+                        >
+                    </div>
+        
+                    <div class="Mail">
+                        <label for="E_mail">電子信箱</label>
+        
+                        <input
+                            type="email"
+                            name="Email"
+                            id="E_mail"
+                            required
+                            placeholder="輸入可以接收到的電子信箱"
+                        >
+                    </div>
+        
+                    <!-- 詢問問題 -->
+                    <div class="Ques">
+                        <p>詢問問題</p>
+                        <!-- 單選鈕 radio 送出資料為同一群組，name的名稱要相同；寫入資料庫的值為 value的內容 -->
+                        <li>
+                            <input
+                                type="radio"
+                                name="Question"
+                                value="平面設計"
+                            >平面設計
+                        </li>
+                        <li>
+                            <input
+                                type="radio"
+                                name="Question"
+                                value="網頁設計"
+                            >網頁設計
+                        </li>
+                        <li>
+                            <input
+                                type="radio"
+                                name="Question"
+                                value="影音設計"
+                            >影音設計
+                        </li>
+                        <li>
+                            <input
+                                type="radio"
+                                name="Question"
+                                value="其他合作"
+                            >其他合作
+                        </li>
+                    </div>
+        
+                    <!-- 多行文字 textarea ； placeholder 輸入的提示訊息，輸入資料時會自動消失-->
+                    <div class="TextArea">
+                        <li><label for="TextArea">詳細內容</label></li>
+        
+                        <textarea
+                            name="Content"
+                            id="TextArea"
+                            cols="30"
+                            rows="10"
+                            placeholder="請輸入問題內容，限制100個字，最少 10 個字"
+                            maxlength="100"
+                            minlength="10"
+                        ></textarea>
+                    </div>
+        
+                    <!-- 按鈕 -->
+                    <div class="FormBtn">
+                        <input
+                            type="submit"
+                            value="送出資料"
+                        >
+                        <input
+                            type="reset"
+                            value="重新輸入"
+                        >
+                    </div>
+                </form>
+            </article>
+        
+        </article>
+        
+        <!-- 內尾 一頁式或多頁式 放 共用性質資料 -->
+        <footer>
+            <!-- 水平線 -->
+            <hr class="HRLine">
+            <!-- 次導覽列 聯絡方式 版權宣告 -->
+            <nav id="subnav">
+                <li id="Graphic">平面作品</li>
+                <li class="HLine LeftLine">|</li>
+                <li id="Web">網頁作品</li>
+                <li class="HLine RightLine">|</li>
+                <li id="Audio">影音作品</li>
+            </nav>
+            <address>
+                <li class="Phone">聯絡電話</li>
+                <li class="Email">E-mail</li>
+                <li class="Line">Line</li>
+            </address>
+            <h6>
+                <!-- 年份 公司名稱 -->
+                公司網站全部圖文係屬公司版權所有 &copy; 2021 - <span>2022</span>
+            </h6>
+        </footer>
+    </article>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>    
+    <script src="js/vue.js"></script>
+    <!-- <script src="js/Java_Script.js?20220113001"></script> -->
+</body>
+
+</html>

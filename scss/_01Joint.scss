@@ -1,0 +1,138 @@
+@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+
+[v-cloak] {
+  display: none;
+}
+
+* {
+  margin: 0 auto;
+  padding: 0;
+  list-style-type: none;
+  font-family: "cwTeXYen", sans-serif, "微軟正黑體";
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+.Clear {
+  clear: both;
+}
+a {
+  // 隱藏連結樣式底線
+  text-decoration: none;
+}
+
+// 動畫 1.設定關鍵影格 2.呼叫動畫
+@keyframes move {
+  0%,
+  20% {
+    transform: translateX(0vw);
+  }
+  25%,
+  40% {
+    transform: translateX(-100vw);
+  }
+  45%,
+  60% {
+    transform: translateX(-200vw);
+  }
+  65%,
+  80% {
+    transform: translateX(-300vw);
+  }
+  85%,
+  100% {
+    transform: translateX(-400vw);
+  }
+}
+
+// 變數區
+$W10: 100vw;
+$Tpx: 16px; // 設定文字尺寸的基礎值 單位 16px（固定值）
+$Trem: 1rem; // 設定文字尺寸的基礎值 單位 1rem（百分比）
+$Em: 1em;
+$WPer: 10%;
+
+$NW: $W10; // 導覽列的寬
+$NH: 65px; // 導覽列的高
+
+// 輪播圖
+$BHsmall: 280px; // 超小與小裝置
+
+// 計算寬度，分為 10 等份
+$W1: $W10 / 10 * 1; // 寬度 1 等份
+$W2: $W10 / 10 * 2; // 寬度 2 等份
+$W3: $W10 / 10 * 3; // 寬度 3 等份
+$W4: $W10 / 10 * 4; // 寬度 4 等份
+$W5: $W10 / 10 * 5; // 寬度 5 等份
+$W6: $W10 / 10 * 6; // 寬度 6 等份
+$W7: $W10 / 10 * 7; // 寬度 7 等份
+$W8: $W10 / 10 * 8; // 寬度 8 等份
+$W9: $W10 / 10 * 9; // 寬度 9 等份
+
+// 繼承區 無法直接撰寫在共用區呼叫；也無法與 mixin 混合函式共用
+%Dn {
+  // 不顯示
+  display: none;
+}
+
+// mixin 混合函式
+@mixin DN {
+  display: none;
+}
+@mixin ON {
+  // 顯示方式：區塊
+  display: block;
+}
+
+@mixin Clear {
+  clear: both;
+}
+
+// 背景圖片替代文字
+@mixin BgText($Bs) {
+  // 將文字移至裝置之外
+  text-indent: -9999px;
+  // 背景圖片對齊（定位點）
+  background-position: center;
+  // 背景圖片取消重覆顯示
+  background-repeat: no-repeat;
+  // 背景圖片尺寸 auto自動 cover（背景圖片小於容器時，放大圖片至容器的大小並填滿；背景圖片大於容器時，縮小圖片至容器的大小並填滿；缺點，容器的長寬比例與背景圖片的長寬比例不合時，會出現背景圖片失真） contain （背景圖片大於容器時，縮小至在容器內呈現，會留邊界）
+  background-size: $Bs;
+}
+
+@mixin BG($Folder, $Photo, $Bs) {
+  // 插值（Interpolation），基於 javascript es6
+  // #{$variable_name}，自行輸入值
+  // 背景圖位置
+  background-image: url(../../images/#{$Folder}/#{$Photo});
+  // 將文字移至裝置之外
+  text-indent: -9999px;
+  // 背景圖片對齊（定位點）
+  background-position: center;
+  // 背景圖片取消重覆顯示
+  background-repeat: no-repeat;
+  // 背景圖片尺寸 auto自動 cover（背景圖片小於容器時，放大圖片至容器的大小並填滿；背景圖片大於容器時，縮小圖片至容器的大小並填滿；缺點，容器的長寬比例與背景圖片的長寬比例不合時，會出現背景圖片失真） contain （背景圖片大於容器時，縮小至在容器內呈現，會留邊界）
+  background-size: $Bs;
+}
+
+// 設定 05 06 07 檔案共用的寬度，導覽列的按鈕，所以會在 nav 內呼叫
+@mixin LargeNav($multiple, $BtnNum) {
+  // 計算方式
+  // 設定 寬度的基準值 5%
+  $W05: 5vw;
+  // 設定 代表 Logo寬度 的變數 30% ；寬度的倍數 6  multiple
+  $LogoWidth: $W05 * $multiple;
+
+  // 設定 代表 li寬度 的變數 ；( 總寬度 - Logo寬度 ) / 剩餘的按鈕數 BtnNum 4 70% / 4 = 17.5%
+  $liWidth: ($W10 - $LogoWidth) / $BtnNum;
+  // 樣式表
+  #Logo {
+    // 寬度
+    width: $LogoWidth;
+  }
+  li {
+    width: $liWidth;
+  }
+}
